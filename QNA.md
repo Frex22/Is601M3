@@ -243,3 +243,50 @@ class BankAccount:
   Methods that belong to the class rather than any specific instance, meaning they do not have access to the instance (`self`) or class (`cls`) data.
 
 Your understanding is on the right path! Recognizing the role of an instance in OOP is crucial because it shows how objects maintain their state and behavior independently. If you have more questions or need further clarification on any of these points, feel free to ask!
+
+## **Issue Encountered**
+(venv) aakash32@Aakash:~/IS601/Is601M3$ 
+(venv) aakash32@Aakash:~/IS601/Is601M3$ 
+(venv) aakash32@Aakash:~/IS601/Is601M3$ 
+(venv) aakash32@Aakash:~/IS601/Is601M3$ git push origin main
+To github.com:Frex22/Is601M3.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:Frex22/Is601M3.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+(venv) aakash32@Aakash:~/IS601/Is601M3$ git pull origin main
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 6 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (6/6), 6.41 KiB | 1.28 MiB/s, done.
+From github.com:Frex22/Is601M3
+ * branch            main       -> FETCH_HEAD
+   15d08fe..55041ac  main       -> origin/main
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches
+
+
+Problem was I created QNA md on git hub and pushed from local the current changes (QNA was  not on local) ideally I should have stashed my local 
+and then pulled from remote first before pushing so now I did this
+
+git pull origin main --no-rebase
+
+since the files changed locally and remotely were different I merged my remote main and local main and did not rebase it, this command
+merges automatically if there is no merge conflict.
+
+
