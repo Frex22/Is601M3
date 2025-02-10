@@ -244,10 +244,17 @@ class BankAccount:
 
 Your understanding is on the right path! Recognizing the role of an instance in OOP is crucial because it shows how objects maintain their state and behavior independently. If you have more questions or need further clarification on any of these points, feel free to ask!
 
-## **Issue Encountered**
-(venv) aakash32@Aakash:~/IS601/Is601M3$ 
-(venv) aakash32@Aakash:~/IS601/Is601M3$ 
-(venv) aakash32@Aakash:~/IS601/Is601M3$ 
+
+
+
+```markdown
+# Git Push Issue and Resolution
+
+## Issue Encountered
+
+When trying to push local changes to the remote repository, the following error was encountered:
+
+```bash
 (venv) aakash32@Aakash:~/IS601/Is601M3$ git push origin main
 To github.com:Frex22/Is601M3.git
  ! [rejected]        main -> main (fetch first)
@@ -257,6 +264,11 @@ hint: have locally. This is usually caused by another repository pushing to
 hint: the same ref. If you want to integrate the remote changes, use
 hint: 'git pull' before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Then, running the pull command produced the following output:
+
+```bash
 (venv) aakash32@Aakash:~/IS601/Is601M3$ git pull origin main
 remote: Enumerating objects: 7, done.
 remote: Counting objects: 100% (7/7), done.
@@ -279,14 +291,33 @@ hint: preference for all repositories. You can also pass --rebase, --no-rebase,
 hint: or --ff-only on the command line to override the configured default per
 hint: invocation.
 fatal: Need to specify how to reconcile divergent branches
+```
 
+## What Caused the Issue
 
-Problem was I created QNA md on git hub and pushed from local the current changes (QNA was  not on local) ideally I should have stashed my local 
-and then pulled from remote first before pushing so now I did this
+The problem occurred because a `QNA.md` file was created and pushed directly on GitHub, meaning that the remote repository contained changes that were not present in your local branch. Ideally, you should have stashed or committed your local changes and then pulled the remote changes before pushing.
 
+## How the Issue Was Resolved
+
+To fix the issue, the following command was used to pull changes from the remote repository without rebasing:
+
+```bash
 git pull origin main --no-rebase
+```
 
-since the files changed locally and remotely were different I merged my remote main and local main and did not rebase it, this command
-merges automatically if there is no merge conflict.
+Since the files changed locally and remotely were different, this command merged the remote `main` branch with the local `main` branch automatically (provided there were no merge conflicts).
 
+## Best Practices Moving Forward
+
+- **Stash or commit your local changes** before pulling remote changes.
+- **Pull the remote changes** to keep your local repository updated:
+  - You can choose to merge, rebase, or fast-forward by configuring your pull strategy:
+    - Merge (default): `git config pull.rebase false`
+    - Rebase: `git config pull.rebase true`
+    - Fast-forward only: `git config pull.ff only`
+- **Resolve merge conflicts** if they occur.
+- **Push your updated branch** after integrating the remote changes.
+```
+
+This version fixes the delimiter issue and improves section organization. It should now display correctly as a Markdown file.
 
