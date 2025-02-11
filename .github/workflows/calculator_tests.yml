@@ -31,6 +31,10 @@ jobs:
           # Install pytest if it's not in your requirements.txt
           pip install pytest
 
-      - name: Run tests with pytest
-        run: pytest
+      - name: Run coverage with pytest
+        run: |
+          pytest --cov=app --cov-report=term-missing --cov-fail-under=98
 
+      - name: Run lint with pytest
+        run: |
+          pylint app tests --fail-under=10
